@@ -5,8 +5,7 @@ export default function Home() {
   const [formData, setFormData] = useState({
     name: '',
     nickname: '',
-    review: '',
-    rating: ''
+    rating: '5'
   });
 
   const handleChange = (e) => {
@@ -16,7 +15,7 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     try {
-      const response = await fetch('/api/submitForm', {
+      const response = await fetch('/api/human', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,8 +27,7 @@ export default function Home() {
         setFormData({
           name: '',
           nickname: '',
-          review: '',
-          rating: 'value-5'
+          rating: ''
         });
       } else {
         console.error('Form submission failed:', response.statusText);
@@ -51,19 +49,13 @@ export default function Home() {
           <input required type="text" name={"nickname"} placeholder="" className="input input-bordered w-full max-w-xs" value={formData.nickname} onChange={handleChange} />
         </div>
         <div className="mt-4">
-          <label htmlFor={"review"} className="block mb-2">Review</label>
-          <div>
-            <textarea name={"review"} placeholder=""  className="textarea textarea-bordered" value={formData.review} onChange={handleChange} />
-          </div>
-        </div>
-        <div className="mt-4">
           <label className="block mb-2">Rating</label>
           <div className="rating">
-            <input type="radio" name="rating" value="value-1" className="mask mask-star-2 bg-orange-400" checked={formData.rating === 'value-1'} onChange={handleChange} />
-            <input type="radio" name="rating" value="value-2" className="mask mask-star-2 bg-orange-400" checked={formData.rating === 'value-2'} onChange={handleChange}  />
-            <input type="radio" name="rating" value="value-3" className="mask mask-star-2 bg-orange-400" checked={formData.rating === 'value-3'} onChange={handleChange} />
-            <input type="radio" name="rating" value="value-4" className="mask mask-star-2 bg-orange-400" checked={formData.rating === 'value-4'} onChange={handleChange} />
-            <input type="radio" name="rating" value="value-5" className="mask mask-star-2 bg-orange-400" checked={formData.rating === 'value-5'} onChange={handleChange} />
+            <input type="radio" name="rating" value="1" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '1'} onChange={handleChange} />
+            <input type="radio" name="rating" value="2" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '2'} onChange={handleChange}  />
+            <input type="radio" name="rating" value="3" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '3'} onChange={handleChange} />
+            <input type="radio" name="rating" value="4" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '4'} onChange={handleChange} />
+            <input type="radio" name="rating" value="5" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '5'} onChange={handleChange} />
           </div>
         </div>
         <div className="mt-8">
