@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: operator-fe
+  labels:
+    app: operator-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: operator-fe
+  template:
+    metadata:
+      name: operator-fe
+      labels:
+        app: operator-fe
+    spec:
+      containers:
+        - name: operator-fe
+          image: rg.fr-par.scw.cloud/namespace-sleepy-matsumoto/smoothoperator-fe:latest
+          ports:
+              - containerPort: 3000
+          env:
+            - name: KUBE_BEARER_TOKEN
+              value: TODO
+            - name: KUBE_ENDPOINT
+              value: TODO
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
+          imagePullPolicy: Always
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: operator-fe
+spec:
+  selector:
+    app: operator-fe
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer

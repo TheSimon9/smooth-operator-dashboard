@@ -8,12 +8,12 @@ export default function Home() {
     rating: '5'
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     try {
       const response = await fetch('/api/human', {
         method: 'POST',
@@ -33,6 +33,7 @@ export default function Home() {
         console.error('Form submission failed:', response.statusText);
       }
     } catch (error) {
+      // @ts-ignore
       console.error('Form submission failed:', error.message);
     }
   };
