@@ -13,11 +13,11 @@ export default async function handler(req, res) {
             "apiVersion": "intre.com/v1",
             "kind": "Site",
             "metadata": {
-                "name": name.substring(0,62),
+                "name": name.substring(0,62).replace(/[^a-zA-Z ]/g, "").replaceAll(" ", "-",).replaceAll("_", "-"),
                 "namespace": "smoothoperator"
             },
             "spec": {
-                "address": `${formData.nickname.toLowerCase()}`,
+                "address": `${formData.address.toLowerCase()}`,
                 "name": `${formData.name.toLowerCase()}`,
                 "message": `${formData.message.toLowerCase()}`
             }
@@ -31,6 +31,9 @@ export default async function handler(req, res) {
             },
             body: body
         });
+
+
+        console.log(response);
 
         if(!response.ok) {
             res.status(500).json({message: 'Failed!'});

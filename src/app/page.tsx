@@ -13,7 +13,9 @@ export default function Home() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+
     try {
       const response = await fetch('/api/site', {
         method: 'POST',
