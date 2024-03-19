@@ -1,5 +1,5 @@
 
-const resource = "/apis/intre.com/v1/namespaces/smoothoperator/humans"
+const resource = "/apis/intre.com/v1/namespaces/smoothoperator/sites"
 
 export default async function handler(req, res) {
     const token = process.env.KUBE_BEARER_TOKEN;
@@ -11,15 +11,15 @@ export default async function handler(req, res) {
         const name = `${formData.name.toLowerCase()}-${crypto.randomUUID().toLowerCase()}`;
         var body = JSON.stringify({
             "apiVersion": "intre.com/v1",
-            "kind": "Human",
+            "kind": "Site",
             "metadata": {
                 "name": name.substring(0,62),
                 "namespace": "smoothoperator"
             },
             "spec": {
-                "username": `${formData.nickname.toLowerCase()}`,
+                "address": `${formData.nickname.toLowerCase()}`,
                 "name": `${formData.name.toLowerCase()}`,
-                "satisfaction": parseInt(formData.rating)
+                "message": `${formData.message.toLowerCase()}`
             }
         });
 

@@ -1,25 +1,25 @@
 'use client'
 import {useEffect, useState} from "react";
 
-interface Human {
+interface Site {
   name: string;
-  username: string;
-  satisfaction: number;
+  address: string;
+  message: string;
 }
 
 export default function Page() {
 
-  const [list,setList] = useState<Human[]>([]);
+  const [list,setList] = useState<Site[]>([]);
 
   useEffect(() => {
-    fetch('/api/human', {
+    fetch('/api/site', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       }
     }).then(response => {
       if (response.ok) {
-        response.json().then(data => setList(data as Human[]));
+        response.json().then(data => setList(data as Site[]));
       } else {
         console.error('Form submission failed:', response.statusText);
       }
@@ -33,8 +33,8 @@ export default function Page() {
         <thead>
         <tr>
           <th>Name</th>
-          <th>Nickname</th>
-          <th>Rating</th>
+          <th>Address</th>
+          <th>Welcome Message</th>
         </tr>
         </thead>
         <tbody>
@@ -42,8 +42,8 @@ export default function Page() {
           list.map((item, index) => (
             <tr key={index}>
               <td>{item.name}</td>
-              <td>{item.username}</td>
-              <td>{item.satisfaction}</td>
+              <td>{item.address}</td>
+              <td>{item.message}</td>
             </tr>))
         }
         </tbody>

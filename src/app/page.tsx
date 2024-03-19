@@ -4,8 +4,8 @@ import {useState} from "react";
 export default function Home() {
   const [formData, setFormData] = useState({
     name: '',
-    nickname: '',
-    rating: '5'
+    address: '',
+    message: ''
   });
 
   const handleChange = (e: any ) => {
@@ -26,8 +26,8 @@ export default function Home() {
         console.log('Form submitted successfully!');
         setFormData({
           name: '',
-          nickname: '',
-          rating: ''
+          address: '',
+          message: ''
         });
       } else {
         console.error('Form submission failed:', response.statusText);
@@ -43,21 +43,18 @@ export default function Home() {
       <form onSubmit={handleSubmit} className={"w-full max-w-xs mx-auto"}>
         <div className="mt-4">
           <label htmlFor={"name"} className="block mb-2">Name</label>
-          <input required type="text" name={"name"} placeholder="" className="input input-bordered w-full max-w-xs" value={formData.name} onChange={handleChange} />
+          <input required type="text" name={"name"} placeholder="" className="input input-bordered w-full max-w-xs"
+                 value={formData.name} onChange={handleChange}/>
         </div>
         <div className="mt-4">
-          <label htmlFor={"nickname"}  className="block mb-2">Nickname</label>
-          <input required type="text" name={"nickname"} placeholder="" className="input input-bordered w-full max-w-xs" value={formData.nickname} onChange={handleChange} />
+          <label htmlFor={"address"} className="block mb-2">URL Address</label>
+          <input required type="text" name={"address"} placeholder="" className="input input-bordered w-full max-w-xs"
+                 value={formData.address} onChange={handleChange}/>
         </div>
         <div className="mt-4">
-          <label className="block mb-2">Rating</label>
-          <div className="rating">
-            <input type="radio" name="rating" value="1" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '1'} onChange={handleChange} />
-            <input type="radio" name="rating" value="2" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '2'} onChange={handleChange}  />
-            <input type="radio" name="rating" value="3" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '3'} onChange={handleChange} />
-            <input type="radio" name="rating" value="4" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '4'} onChange={handleChange} />
-            <input type="radio" name="rating" value="5" className="mask mask-star-2 bg-orange-400" checked={formData.rating === '5'} onChange={handleChange} />
-          </div>
+          <label htmlFor={"message"} className="block mb-2">Welcome Message</label>
+          <input required type="text" name={"message"} placeholder="" className="input input-bordered w-full max-w-xs"
+                 value={formData.message} onChange={handleChange}/>
         </div>
         <div className="mt-8">
           <button className="btn btn-active">Submit review</button>
