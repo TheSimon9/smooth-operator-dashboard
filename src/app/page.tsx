@@ -15,7 +15,7 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('/api/human', {
+      const response = await fetch('/api/site', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
