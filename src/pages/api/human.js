@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         const formData = req.body;
 
-        const name = `${formData.name.toLowerCase()}-${crypto.randomUUID()}`;
+        const name = `${formData.name.toLowerCase()}-${crypto.randomUUID().toLowerCase()}`;
         var body = JSON.stringify({
             "apiVersion": "intre.com/v1",
             "kind": "Human",
@@ -17,8 +17,8 @@ export default async function handler(req, res) {
                 "namespace": "smoothoperator"
             },
             "spec": {
-                "username": `${formData.nickname}`,
-                "name": `${formData.name}`,
+                "username": `${formData.nickname.toLowerCase()}`,
+                "name": `${formData.name.toLowerCase()}`,
                 "satisfaction": parseInt(formData.rating)
             }
         });
