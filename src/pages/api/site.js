@@ -19,7 +19,7 @@ export default async function handler(req, res) {
             "spec": {
                 "address": `${formData.address.toLowerCase()}`,
                 "name": `${formData.name.toLowerCase()}`,
-                "message": `${formData.message.toLowerCase()}`
+                "message": `${formData.message}`
             }
         });
 

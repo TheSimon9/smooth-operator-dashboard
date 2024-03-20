@@ -59,7 +59,7 @@ export default function Home() {
                  value={formData.message} onChange={handleChange}/>
         </div>
         <div className="mt-8">
-          <button className="btn btn-active">Submit review</button>
+          <button className="btn btn-active">Create you amazing site</button>
         </div>
       </form>
     </main>
